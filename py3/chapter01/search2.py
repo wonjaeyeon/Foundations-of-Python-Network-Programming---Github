@@ -13,11 +13,13 @@ def geocode(address):
     user_agent = 'Foundations of Python Network Programming example search2.py'
     headers = {'User-Agent': user_agent}
     response = requests.get(base, params=parameters, headers=headers)
+    print(response)
     reply = response.json()
+    print(reply)
     print(reply[0]['lat'], reply[0]['lon'])
 
 if __name__ == '__main__':
     geocode('207 N. Defiance St, Archbold, OH')
     #find the location of soongsil university
-    geocode("Soongsil University")
+    #geocode("Soongsil University")
 

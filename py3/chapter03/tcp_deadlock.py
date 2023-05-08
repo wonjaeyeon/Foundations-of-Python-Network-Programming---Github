@@ -8,8 +8,12 @@ import argparse, socket, sys
 def server(host, port):
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    #bind 함수 내에 튜플을 입력했다는 점을 유의하셔야 합니다. bind('','')가 아니라 bind(('',''))입니다.
+    # 앞서 말한대로 bind는 소켓과 AF를 연결하는 과정이라 하였으므로, 이 인자는 어드레스 패밀리가 됩니다.
+    # 앞부분은 ip, 뒷부분은 포트로 (ip, port) 형식으로 한 쌍으로 구성된 튜플이 곧 어드레스 패밀리인 것이죠.
+    #즉, 위의 bind는 8080번 포트에서 모든 인터페이스에게 연결하도록 한다라는 정도의 의미로 받아들이면 될 것 같습니다.
     sock.bind((host, port))
-    # 앞서 bind가 서버소켓에서 필수로 사용된다고 말했듯이, 이 listen도 서버소켓에서밖에 쓰일 일이 없습니다.
+    # 앞서 bind가 서버 소켓에서 필수로 사용된다고 말했듯이, 이 listen도 서버 소켓에서밖에 쓰일 일이 없습니다.
     # listen()안에 인자로 숫자 1이 입력되어 있는데, 이는 해당 소켓이 총 몇개의 동시접속까지를 허용할 것이냐는 이야기입니다.
     # 1을 입력하면 단 한 개의 접속만을 허용할 것이고, 인자를 입력하지 않으면 파이썬이 자의적으로 판단해서 임의의 숫자로 listen한다고 합니다.
     sock.listen(1)

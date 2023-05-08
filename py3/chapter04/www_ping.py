@@ -11,14 +11,19 @@ def connect_to(hostname_or_ip):
             hostname_or_ip, 'www', 0, socket.SOCK_STREAM, 0,
             socket.AI_ADDRCONFIG | socket.AI_V4MAPPED | socket.AI_CANONNAME,
             )
+        print(infolist)
     except socket.gaierror as e:
         print('Name service failure:', e.args[1])
         sys.exit(1)
 
     info = infolist[0]  # per standard recommendation, try the first one
+    print(info)
     socket_args = info[0:3]
+    print(socket_args)
     address = info[4]
+    print(address)
     s = socket.socket(*socket_args)
+    print(s)
     try:
         s.connect(address)
     except socket.error as e:

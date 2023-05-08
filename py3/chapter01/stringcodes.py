@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # Foundations of Python Network Programming, Third Edition
 # https://github.com/brandon-rhodes/fopnp/blob/m/py3/chapter01/stringcodes.py
+from urllib.parse import quote_plus
 
 if __name__ == '__main__':
     # Translating from the outside world of bytes to Unicode characters.
@@ -11,5 +12,9 @@ if __name__ == '__main__':
     # Translating characters back into bytes before sending them.
     output_characters = 'We copy you down, Eagle.\n'
     output_bytes = output_characters.encode('utf-8')
+    a = b'network'
+    # encode a into utf-8
+
+
     with open('eagle.txt', 'wb') as f:
         f.write(output_bytes)
