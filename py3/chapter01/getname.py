@@ -4,6 +4,8 @@
 
 import socket
 
+# check if the branch is well made
+
 if __name__ == '__main__':
     # 'maps.google.com'의 IP 주소를 얻고자 한다. 방법은 다음과 같다.
     # hostname is the name of the server we want to connect to // host, hostname, domain name
