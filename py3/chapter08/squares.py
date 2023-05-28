@@ -3,14 +3,16 @@
 # https://github.com/brandon-rhodes/fopnp/blob/m/py3/chapter08/squares.py
 # Using memcached to cache expensive results.
 
-import memcache, random, time, timeit
+import  random, time, timeit
+import  memcache
+
 
 def compute_square(mc, n):
-    value = mc.get('sq:%d' % n)
+    value = mc.get('sq:%d' % n) # 만약 저장되어 있다면 memcached에서 가져온다.
     if value is None:
         time.sleep(0.001)  # pretend that computing a square is expensive
         value = n * n
-        mc.set('sq:%d' % n, value)
+        mc.set('sq:%d' % n, value) # 만약 저장되어 있지 않다면 memcached에 저장한다.
     return value
 
 def main():

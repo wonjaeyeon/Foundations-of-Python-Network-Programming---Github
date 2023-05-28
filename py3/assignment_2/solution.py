@@ -203,10 +203,22 @@ def ping(domain):
     ip_address = socket.gethostbyname(domain)
     return ip_address
 
+def custom_ord(char):
+    return int.from_bytes(char.encode(), 'little')
+
+def custom_chr(number):
+    return (number).to_bytes((number.bit_length() + 7) // 8, 'little').decode()
+
+
 # Function to toggle the case of alphabetic characters in a string
+# def toggle_string(string):
+#     toggled_string = "".join(chr(ord(c) ^ 32) if 'A' <= c <= 'Z' or 'a' <= c <= 'z' else c for c in string)
+#     return toggled_string
+
 def toggle_string(string):
-    toggled_string = "".join(chr(ord(c) ^ 32) if 'A' <= c <= 'Z' or 'a' <= c <= 'z' else c for c in string)
+    toggled_string = "".join(custom_chr(custom_ord(c) ^ 32) if 'A' <= c <= 'Z' or 'a' <= c <= 'z' else c for c in string)
     return toggled_string
+
 
 # Main entry point for the application
 if __name__ == "__main__":

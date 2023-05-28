@@ -6,6 +6,7 @@
 import zen_utils
 from threading import Thread
 
+# make a thread for each client
 def start_threads(listener, workers=4):
     t = (listener,)
     for i in range(workers):
